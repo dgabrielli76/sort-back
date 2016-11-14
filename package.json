@@ -1,0 +1,22 @@
+{
+  "name": "sort-back",
+  "version": "1.0.0",
+  "description": "This is a school project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dgabrielli76/sort-back.git"
+  },
+  "author": "David GABRIELLI & Yoann PERRO",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dgabrielli76/sort-back/issues"
+  },
+  "homepage": "https://github.com/dgabrielli76/sort-back#readme",
+  "dependencies": {
+    "express": "^4.14.0"
+  }
+}
