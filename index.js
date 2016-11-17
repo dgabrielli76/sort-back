@@ -3,6 +3,7 @@ var bodyParser = require('body-parser')
 
 // Setup Express
 var app = express();
+app.use(express.static(__dirname + '/public'))
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
@@ -44,7 +45,7 @@ app.post('/team', function (req, res) {
 
 // GET method route
 app.get('/', function (req, res) {
-  res.send('GET request on /');
+  res.sendFile(path.join(__dirname + '/index.html'));
 });
 
 // Start server

@@ -1,0 +1,79 @@
+<!doctype html>
+<html ng-app="teamizer">
+<head>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+  <script src="app.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.2.3/css/bulma.min.css">
+  <link rel="stylesheet" href="style.css">
+  <meta charset="utf-8">
+  <title>Teamizer</title>
+</head>
+<body ng-controller="TeamizerController">
+  <section class="hero is-primary">
+    <div class="hero-body">
+      <div class="container">
+        <h1 class="title">
+          Teamizer
+        </h1>
+      </div>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container">
+      <div class="notification is-danger" ng-if="error">
+        {{error}}
+      </div>
+      <div class="heading">
+        <h1 class="title">joueurs</h1>
+        <div class="columns">
+          <form ng-submit="addPlayer()" class="form">
+            <div class="column">
+              <input class="input" type="text" placeholder="Nom du joueur" ng-model="player">
+            </div>
+            <div class="column">
+              <a class="button is-primary full-width" ng-click="addPlayer()" ng-disabled="playerPresent()">Ajouter</a>
+            </div>
+          </form>
+        </div>
+        <div class="notification" ng-repeat="player in players track by $index">
+          <button class="delete" ng-click="removePlayer($index)"></button>
+          {{player}}
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container">
+      <div class="heading">
+        <h1 class="title">équipes</h1>
+        <div class="columns">
+          <div class="column">
+            <span class="select full-width">
+              <select class="full-width" ng-model="teamCount">
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+              </select>
+            </span>
+          </div>
+          <div class="column">
+            <a class="button is-primary full-width" ng-click="getTeams()">Générer les équipes</a>
+          </div>
+        </div>
+        <div ng-repeat="team in createdTeams track by $index">
+          <h1 class="subtitle">équipe {{$index + 1}}</h1>
+          <div class="columns">
+            <div class="column" ng-repeat="player in team track by $index">
+              <div class="notification" ng-class="{'is-info': $parent.$index==0, 'is-warning': $parent.$index==1, 'is-danger': $parent.$index==2, 'is-success': $parent.$index==3, 'is-primary': $parent.$index==4}">
+                {{player}} <span ng-if="$index==0">(C)</span>
+              </div>
+            </div>
+          </div>
+          <br>
+        </div>
+      </div>
+    </div>
+  </section>
+</body>
+</html>
