@@ -43,6 +43,24 @@ app.post('/team', function (req, res) {
   res.json(createdTeams);
 });
 
+function fibonacci(numMax){
+  for(var fibArray = [0,1], i=0,j=1,k=0; k<numMax;i=j,j=x,k++ ){
+    x=i+j;
+    fibArray.push(x);
+  }
+  return fibArray;
+}
+
+// GET method route
+app.get('/fibonacci', function (req, res) {
+  var n = req.query.n;
+  console.log('Calculating Fibonacci sequence of ' + n + ' numbers');
+
+  var sequence = fibonacci(n);
+
+  res.send('Fibonacci(' + n + ') => ' + sequence);
+});
+
 // GET method route
 app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname + '/index.html'));
